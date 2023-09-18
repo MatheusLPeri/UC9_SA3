@@ -1,13 +1,13 @@
-package dbConnection;
+package conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DatabaseConnection
+public class ConexaoBanco
 {
-	private static String dataBase = "jdbc:mysql://localhost:3306/shoes_happy";
-	private static String user = "MatheusLP";
-	private static String password = "matheusluizperi";
+	private static String banco = "jdbc:mysql://localhost:3306/shoes_happy";
+	private static String usuario = "MatheusLP";
+	private static String senha = "matheusluizperi";
 	private static Connection connection = null;
 
 	public static Connection getConnection()
@@ -17,22 +17,22 @@ public class DatabaseConnection
 
 	static
 	{
-		Conect();
+		Conectar();
 	}
 
-	public DatabaseConnection()
+	public ConexaoBanco()
 	{
-		Conect();
+		Conectar();
 	}
 
-	private static void Conect()
+	private static void Conectar()
 	{
 		try
 		{
 			if(connection ==null)
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				connection = DriverManager.getConnection(dataBase,user,password);
+				connection = DriverManager.getConnection(banco,usuario,senha);
 				connection.setAutoCommit(false);
 			}
 		} catch (Exception e)
