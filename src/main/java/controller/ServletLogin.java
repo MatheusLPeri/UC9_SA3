@@ -10,10 +10,13 @@ import model.Usuario;
 
 import java.io.IOException;
 
+import dao.LoginRepository;
+
 @WebServlet("/LoginServlet")
 public class ServletLogin extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	private LoginRepository loginRepository = new LoginRepository();
 
 	public ServletLogin()
 	{
@@ -27,22 +30,48 @@ public class ServletLogin extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		String nomeLogin = request.getParameter("name");
-		String matriculaLogin = request.getParameter("matricula");
-		String enderecoLogin = request.getParameter("endereco");
+		String nomeLogin = request.getParameter("nome");
+		//String matriculaLogin = request.getParameter("matricula");
+		//String enderecoLogin = request.getParameter("endereco");
 		String senhaLogin = request.getParameter("senha");
 
-		if (nomeLogin != null && !nomeLogin.isEmpty() && matriculaLogin != null && !matriculaLogin.isEmpty())
+		String url = request.getParameter("url");
+
+		try
 		{
-			Usuario newUser = new Usuario();
-			newUser.setUsuario(nomeLogin);
-			newUser.setSenha(senhaLogin);
-		} else
+			if (nomeLogin != null && !nomeLogin.isEmpty() && senhaLogin != null && !senhaLogin.isEmpty())
+			{
+				Usuario newUser = new Usuario();
+				newUser.setUsuario(nomeLogin);
+				newUser.setSenha(senhaLogin);
+
+				if (loginRepository.ValidarLogin(newUser))
+				{
+					request.getSession().setAttribute("usuario", newUser.getUsuario());
+					if (url == null || url.equals("null"))
+					{
+						url = "painel/inicio.jsp";
+					}
+					RequestDispatcher redirecionar = request.getRequestDispatcher(url);
+					redirecionar.forward(request, response);
+				} else
+				{
+					RequestDispatcher redirecionar = request.getRequestDispatcher("login.jsp");
+					request.setAttribute("msg", "Informações incorretas!");
+					redirecionar.forward(request, response);
+				}
+
+			} else
+			{
+				RequestDispatcher redirecionar = request.getRequestDispatcher("login.jsp");
+				request.setAttribute("msg", "Utilize informações válidas!");
+				redirecionar.forward(request, response);
+			}
+		} catch (Exception e)
 		{
-			RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
-			request.setAttribute("msg", "Utilize informações válidas!");
-			redirecionar.forward(request, response);
+			e.printStackTrace();
 		}
+
 	}
 
 }
