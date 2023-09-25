@@ -25,8 +25,10 @@
 	<div class="container container-rounded bg-light">
 		<br>
 		<h1>Cadastre-se!</h1>
+		<h6>Este é index.jsp</h6>
+		<h6>Use /UC9_SA3/login.jsp</h6>
 		<br>
-		<form class="custom-form" action="LoginServlet" method="POST">
+		<form class="custom-form" action="LoginServlet" method="post">
 
 			<div class="form-group">
 				<label for="nome" class="fw-bold">Nome</label>
@@ -35,13 +37,13 @@
 			</div>
 
 			<div class="form-group">
-				<label for="matricula" class="fw-bold">MatrÃ­cula</label>
+				<label for="matricula" class="fw-bold">Matrícula</label>
 				<input type="text" class="form-control border-dark" id="matricula" name="matricula" required>
 				<br>
 			</div>
 
 			<div class="form-group">
-				<label for="endereco" class="fw-bold">EndereÃ§o</label>
+				<label for="endereco" class="fw-bold">Endereço</label>
 				<input type="text" class="form-control border-dark" id="endereco" name="endereco" required>
 				<br>
 			</div>
@@ -56,8 +58,8 @@
 				<label for="modalidade" class="fw-bold">Modalidade</label>
 				<select class="form-control border-dark" id="modalidade" name="modalidade">
 					<option value="">Selecione a modalidade</option>
-					<option value="cpf">Pessoa fÃ­sica (CPF)</option>
-					<option value="cnpj">Pessoa jurÃ­dica (CNPJ)</option>
+					<option value="cpf">Pessoa física (CPF)</option>
+					<option value="cnpj">Pessoa jurídica (CNPJ)</option>
 				</select>
 				<br>
 			</div>
