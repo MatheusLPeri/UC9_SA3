@@ -26,7 +26,7 @@
 	class="custom-bg d-flex justify-content-center align-items-center vh-100">
 	<div class="container container-rounded bg-light">
 		<br>
-		<h1>Cadastre-se!</h1>
+		<h1>Entrar</h1>
 		<br>
 		<form class="custom-form" action="LoginServlet" method="post">
 
@@ -37,72 +37,23 @@
 			</div>
 
 			<div class="form-group">
-				<label for="matricula" class="fw-bold">Matrícula</label> <input
-					type="text" class="form-control border-dark" id="matricula"
-					name="matricula" required> <br>
-			</div>
-
-			<div class="form-group">
-				<label for="endereco" class="fw-bold">Endereço</label> <input
-					type="text" class="form-control border-dark" id="endereco"
-					name="endereco" required> <br>
-			</div>
-
-			<div class="form-group">
 				<label for="senha" class="fw-bold">Senha</label> <input
 					type="password" class="form-control border-dark" id="senha"
 					name="senha" required> <br>
 			</div>
-
-			<div class="form-group">
-				<label for="modalidade" class="fw-bold">Modalidade</label> <select
-					class="form-control border-dark" id="modalidade" name="modalidade">
-					<option value="">Selecione a modalidade</option>
-					<option value="cpf">Pessoa física (CPF)</option>
-					<option value="cnpj">Pessoa jurídica (CNPJ)</option>
-				</select> <br>
-			</div>
-
-			<div class="form-group" id="cpfField" style="display: none;">
-				<label for="cpf" class="fw-bold">CPF</label> <input type="text"
-					class="form-control border-dark" id="cpf" name="cpf"> <br>
-			</div>
-
-			<div class="form-group" id="cnpjField" style="display: none;">
-				<label for="cnpj" class="fw-bold">CNPJ</label> <input type="text"
-					class="form-control border-dark" id="cnpj" name="cnpj"> <br>
-			</div>
-
 			<br>
+
 			<div class="d-grid gap-2 col-6 mx-auto">
 				<button type="submit" class="btn btn-primary border-dark"
 					type="button">Continuar</button>
 			</div>
 			<br>
-			
+
 		</form>
 		<div class="d-flex justify-content-center align-items-center">
-			<h5>${msg}</h5>
+			<h5 class="text-danger">${msg}</h5>
 		</div>
+		<br>
 	</div>
-
-	<script>
-		document.getElementById('modalidade').addEventListener('change',
-				function() {
-					var cpfField = document.getElementById('cpfField');
-					var cnpjField = document.getElementById('cnpjField');
-
-					if (this.value === 'cpf') {
-						cpfField.style.display = 'block';
-						cnpjField.style.display = 'none';
-					} else if (this.value === 'cnpj') {
-						cpfField.style.display = 'none';
-						cnpjField.style.display = 'block';
-					} else {
-						cpfField.style.display = 'none';
-						cnpjField.style.display = 'none';
-					}
-				});
-	</script>
 </body>
 </html>
