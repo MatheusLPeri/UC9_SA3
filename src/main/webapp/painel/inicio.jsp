@@ -18,6 +18,11 @@
 		<div>
 			<a href="login.jsp" class="btn btn-primary">Sair</a>
 		</div>
+		<div>
+			<a class="nav-link"
+				href="<%=request.getContextPath()%>/LoginServlet?acao=logout"><%=request.getSession().getAttribute("usuario")%>
+				- Logout(Sair)</a>
+		</div>
 		<br>
 	</div>
 </body>
