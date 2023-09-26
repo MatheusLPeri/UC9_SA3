@@ -6,8 +6,19 @@
 <meta charset="UTF-8">
 <title>Administrativo</title>
 <jsp:include page="bootstrap.jsp"></jsp:include>
+<jsp:include page="bg.jsp"></jsp:include>
 </head>
 <body>
-	<!-- <h1>Administrativo</h1> -->
+	<div class="container container-rounded bg-light text-center">
+		<div>
+			<h1 class="fw-bold text-primary">ShoesHappy</h1>
+			<h3>Painel Administrativo</h3>
+		</div>
+		<br>
+		<div>
+			<a href="login.jsp" class="btn btn-primary">Sair</a>
+		</div>
+		<br>
+	</div>
 </body>
 </html>
