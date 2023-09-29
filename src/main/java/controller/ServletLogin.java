@@ -29,7 +29,7 @@ public class ServletLogin extends HttpServlet
 		if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("logout"))
 		{
 			request.getSession().invalidate();
-			RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher redirecionar = request.getRequestDispatcher("login.jsp");
 			redirecionar.forward(request, response);
 		}
 		doPost(request, response);

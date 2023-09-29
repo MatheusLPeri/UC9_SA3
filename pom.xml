@@ -21,7 +21,16 @@
 			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.2</version>
+		</dependency>
+		<dependency>
+			<groupId>UC9_20221_4</groupId>
+			<artifactId>UC9_20221_4</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
