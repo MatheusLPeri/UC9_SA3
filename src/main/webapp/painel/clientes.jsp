@@ -34,49 +34,62 @@
 	<div class="centered-container">
 		<div class="bg-light form-container">
 			<h1 style="text-align: center;">Painel Administrativo</h1>
-			<h4 style="text-align: center;">Usuários</h4>
+			<h4 style="text-align: center;">Clientes</h4>
 			<div class="container">
 				<br>
 				<div class="d-grid gap-2 col-6 mx-auto">
 					<button type="button" class="btn btn-primary border-dark"
-						onclick="outraPagina()">Ir para clientes</button>
+						onclick="outraPagina()">Ir para usuários</button>
 				</div>
 			</div>
 			<br> <a class="nav-link fw-bold"
 				href="<%=request.getContextPath()%>/LoginServlet?acao=logout"
 				style="float: right;"><%=request.getSession().getAttribute("usuario")%>
 				- Logout</a>
-			<form action="<%=request.getContextPath()%>/UserServlet"
-				method="post" id="formUsuario">
-				<div class="mb-3">
-					<label for="formGroupExampleInput" class="form-label fw-bold">Usuário</label>
-					<input type="text" name="usuario" id="usuario"
-						class="form-control border-dark" placeholder="Nome do Usuário"
-						value="${newUser.usuario}">
-				</div>
-				<div class="mb-3">
-					<label for="formGroupExampleInput2" class="form-label fw-bold">Senha</label>
-					<input type="password" class="form-control border-dark"
-						name="senha" id="senha" placeholder="Senha do Usuário"
-						value="${newUser.senha}">
-				</div>
+			<form action="<%=request.getContextPath()%>/ClienteServlet"
+				method="post" id="formCliente">
 				<div class="mb-3">
 					<label for="formGroupExampleInput" class="form-label fw-bold">ID</label>
 					<input type="text" name="id" id="id"
-						class="form-control border-dark" placeholder="Código do Usuário"
-						readonly="readonly" value="${newUser.id}">
+						class="form-control border-dark" placeholder="Código do cliente"
+						readonly="readonly" value="${newCliente.id}">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput" class="form-label fw-bold">Nome</label>
+					<input type="text" name="nome" id="nome"
+						class="form-control border-dark" placeholder="Nome do Cliente"
+						value="${newCliente.cliente}">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput2" class="form-label fw-bold">Endereço</label>
+					<input type="text" class="form-control border-dark" name="endereco"
+						id="endereco" placeholder="Endereço do cliente"
+						value="${newCliente.endereco}">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput2" class="form-label fw-bold">Modalidade</label>
+					<input type="text" class="form-control border-dark"
+						name="modalidade" id="modalidade"
+						placeholder="Selecione modalidade"
+						value="${newCliente.modalidade}">
+				</div>
+				<div class="mb-3">
+					<label for="formGroupExampleInput2" class="form-label fw-bold">Cpf/Cnpj</label>
+					<input type="text" class="form-control border-dark" name="cpf"
+						id="cpf" placeholder="Cpf/Cnpj do cliente"
+						value="${newCliente.cpf}">
 				</div>
 				<input type="hidden" name="acao" id="acao" value=""> <br>
 				<button type="submit" class="btn btn-success border-dark">Salvar</button>
 				<button type="button" class="btn btn-info border-dark"
 					onclick="limparDados();">Limpar campos</button>
 				<button type="button" class="btn btn-warning border-dark"
-					onclick="apagarUsuario();">Apagar</button>
+					onclick="apagarCliente();">Apagar</button>
 				<button type="button" class="btn btn-danger border-dark"
-					onclick="apagarUsuarioAjax();">Apagar Ajax</button>
+					onclick="apagarClienteAjax();">Apagar Ajax</button>
 				<button type="button" class="btn btn-primary border-dark"
 					data-bs-toggle="modal" data-bs-target="#meuModal">Consultar
-					Usuário</button>
+					Cliente</button>
 				<div class="container">
 					<br> <span id="mensagem" class="fw-bold text-primary">${msg}</span>
 				</div>
@@ -90,7 +103,7 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h4 class="modal-title">Consultar Usuário</h4>
+					<h4 class="modal-title">Consultar Cliente</h4>
 					<button type="button" class="btn-close border-dark"
 						data-bs-dismiss="modal"></button>
 				</div>
@@ -102,13 +115,13 @@
 							aria-describedby="basic-addon2">
 						<div class="input-group-append">
 							<button class="btn btn-success border-dark" type="button"
-								onclick="consultarUsuario();">Consultar</button>
+								onclick="consultarCliente();">Consultar</button>
 						</div>
-						<table class="table" id="tableUsuaio">
+						<table class="table" id="tableCliente">
 							<thead>
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Usuário</th>
+									<th scope="col">Cliente</th>
 									<th scope="col">Opção</th>
 								</tr>
 							</thead>
@@ -129,16 +142,16 @@
 	</div>
 
 	<script type="text/javascript">
-		function editarUsuario(id) {
-			var urlAction = document.getElementById("formUsuario").action;
+		function editarCliente(id) {
+			var urlAction = document.getElementById("formCliente").action;
 			window.location.href = urlAction + '?acao=buscarEditar&id=' + id;
 		}
 
-		function consultarUsuario() {
+		function consultarCliente() {
 			var nomeBusca = document.getElementById('nomeBusca').value;
 
 			if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != '') {
-				var urlAction = document.getElementById("formUsuario").action;
+				var urlAction = document.getElementById("formCliente").action;
 
 				$
 						.ajax(
@@ -150,15 +163,15 @@
 									success : function(response) {
 
 										var json = JSON.parse(response);
-										$('#tableUsuaio > tbody > tr').remove();
+										$('#tableCliente > tbody > tr').remove();
 										for (var x = 0; x < json.length; x++) {
-											$('#tableUsuaio > tbody')
+											$('#tableCliente > tbody')
 													.append(
 															'<tr> <td>'
 																	+ json[x].id
 																	+ '</td><td>'
-																	+ json[x].usuario
-																	+ '</td><td><button onclick="editarUsuario('
+																	+ json[x].cliente
+																	+ '</td><td><button onclick="editarCliente('
 																	+ json[x].id
 																	+ ')" type="button" class="btn btn-info">Editar</button></tr>')
 										}
@@ -169,22 +182,22 @@
 
 								}).fail(
 								function(xhr, status, errorThrown) {
-									alert('Erro ao deletar usuário com Ajax: '
+									alert('Erro ao deletar cliente com Ajax: '
 											+ xhr.responseText);
 								});
 			}
 		}
 
-		function apagarUsuarioAjax() {
-			if (confirm("Deseja realemente apagar o Usuário com Ajax")) {
-				var urlAction = document.getElementById("formUsuario").action;
-				var idUser = document.getElementById('id').value;
+		function apagarClienteAjax() {
+			if (confirm("Deseja realemente apagar o cliente com Ajax")) {
+				var urlAction = document.getElementById("formCliente").action;
+				var idCliente = document.getElementById('id').value;
 
 				$.ajax({
 
 					method : "get",
 					url : urlAction,
-					data : "id=" + idUser + '&acao=deletarajax',
+					data : "id=" + idCliente + '&acao=deletarajax',
 					success : function(response) {
 
 						limparDados();
@@ -193,29 +206,29 @@
 
 				}).fail(
 						function(xhr, status, errorThrown) {
-							alert('Erro ao deletar usuário com Ajax: '
+							alert('Erro ao deletar cliente com Ajax: '
 									+ xhr.responseText);
 						});
 			}
 		}
 
-		function apagarUsuario() {
-			if (confirm("Deseja realmente apagar o usuário?")) {
-				document.getElementById("formUsuario").method = 'get';
+		function apagarCliente() {
+			if (confirm("Deseja realmente apagar o cliente?")) {
+				document.getElementById("formCliente").method = 'get';
 				document.getElementById("acao").value = 'deletar';
-				document.getElementById("formUsuario").submit();
+				document.getElementById("formCliente").submit();
 			}
 		}
 
 		function limparDados() {
-			var campus = document.getElementById("formUsuario").elements;
+			var campus = document.getElementById("formCliente").elements;
 
 			for (x = 0; x < campus.length; x++) {
 				campus[x].value = '';
 			}
 		}
 		function outraPagina() {
-			window.location.href = "clientes.jsp";
+			window.location.href = "painel/inicio.jsp";
 		}
 	</script>
 </body>
