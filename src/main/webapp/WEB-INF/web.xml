@@ -38,4 +38,14 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClienteServlet</display-name>
+    <servlet-name>ClienteServlet</servlet-name>
+    <servlet-class>controller.ClienteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClienteServlet</servlet-name>
+    <url-pattern>/ClienteServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
