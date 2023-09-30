@@ -228,7 +228,7 @@
 			}
 		}
 		function outraPagina() {
-			window.location.href = "painel/inicio.jsp";
+		    window.location.href = "<%=request.getContextPath()%>/painel/inicio.jsp";
 		}
 	</script>
 </body>
