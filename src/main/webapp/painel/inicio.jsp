@@ -215,7 +215,7 @@
 			}
 		}
 		function outraPagina() {
-			window.location.href = "clientes.jsp";
+			window.location.href = "painel/clientes.jsp";
 		}
 	</script>
 </body>

@@ -38,7 +38,7 @@ public class ClienteServlet extends HttpServlet
 
 				clienteRepository.deletarCliente(clienteId);
 				request.setAttribute("msg", "Excluído com Sucesso!!!");
-				request.getRequestDispatcher("painel/inicio.jsp").forward(request, response);
+				request.getRequestDispatcher("painel/clientes.jsp").forward(request, response);
 
 			} else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletarAjax"))
 			{
@@ -66,16 +66,16 @@ public class ClienteServlet extends HttpServlet
 
 				request.setAttribute("msg", "Cliente em Edição!!!");
 				request.setAttribute("newCliente", newCliente);
-				request.getRequestDispatcher("painel/inicio.jsp").forward(request, response);
+				request.getRequestDispatcher("painel/clientes.jsp").forward(request, response);
 
 			} else
 			{
-				request.getRequestDispatcher("painel/inicio.jsp").forward(request, response);
+				request.getRequestDispatcher("painel/clientes.jsp").forward(request, response);
 			}
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-			RequestDispatcher redireciona = request.getRequestDispatcher("painel/error.jsp");
+			RequestDispatcher redireciona = request.getRequestDispatcher("painel/clientes.jsp");//
 			request.setAttribute("msg", e.getMessage());
 			redireciona.forward(request, response);
 		}
@@ -124,12 +124,12 @@ public class ClienteServlet extends HttpServlet
 
 			request.setAttribute("msg", mensagem);
 			request.setAttribute("newCliente", newCliente);
-			request.getRequestDispatcher("painel/inicio.jsp").forward(request, response);
+			request.getRequestDispatcher("painel/clientes.jsp").forward(request, response);
 
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-			RequestDispatcher redireciona = request.getRequestDispatcher("erros.jsp");
+			RequestDispatcher redireciona = request.getRequestDispatcher("painel/clientes.jsp");//
 			request.setAttribute("msg", e.getMessage());
 			redireciona.forward(request, response);
 		}

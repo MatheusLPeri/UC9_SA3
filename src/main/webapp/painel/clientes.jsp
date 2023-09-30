@@ -58,7 +58,7 @@
 					<label for="formGroupExampleInput" class="form-label fw-bold">Nome</label>
 					<input type="text" name="nome" id="nome"
 						class="form-control border-dark" placeholder="Nome do Cliente"
-						value="${newCliente.cliente}">
+						value="${newCliente.nome}">
 				</div>
 				<div class="mb-3">
 					<label for="formGroupExampleInput2" class="form-label fw-bold">Endereço</label>
